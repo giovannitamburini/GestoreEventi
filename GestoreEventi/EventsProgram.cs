@@ -79,7 +79,7 @@ namespace GestoreEventi
         }
 
         // creo un metodo statico per stampare una lista di eventi che gli passo
-        static void PrintEvents(List<Event> programOfEvents)
+        public static void PrintEvents(List<Event> programOfEvents)
         {
             foreach (Event singleEvent in programOfEvents)
             {
@@ -87,5 +87,5 @@ namespace GestoreEventi
             }
         }
 
-    }
+    } 
 }

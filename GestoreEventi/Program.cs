@@ -242,7 +242,11 @@ namespace GestoreEventi
 
             } while (true);
 
-            firstProgram.SearchEventsByDate(selectedDate);
+            // salvo in una variabile la lista restituita filtrata per data
+            List<Event> listByDate = firstProgram.SearchEventsByDate(selectedDate);
+
+            // utilizzo il metodo statico per stampare la lista filtrata per data
+            EventsProgram.PrintEvents(listByDate);
 
             // 4. Eliminate tutti gli eventi dal vostro programma
             firstProgram.EmptyList();
