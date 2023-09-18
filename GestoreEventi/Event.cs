@@ -19,12 +19,12 @@ namespace GestoreEventi
             get { return title; }
             set
             {
-                if (string.IsNullOrEmpty(title))
+                if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentException($"Il titolo non può ezsere vuoto");
-
+                    throw new ArgumentException($"Il titolo non può essere vuoto");
                 }
-                    title = value;
+
+                title = value.ToString();
             }
         }
 
