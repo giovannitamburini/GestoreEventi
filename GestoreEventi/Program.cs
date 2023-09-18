@@ -38,11 +38,14 @@ namespace GestoreEventi
                 // istanzio un nuovo evento
                 Event firstShow = new Event(eventTitle, eventDate, eventMaxCapacity);
 
+                // blocco di codice dove chiedo all'utente se vuole prenotare dei posti --------------------
+
+                // istanzio una variabile per salvare la scelta nell'effettuare una prenotazione
                 string choice;
 
                 do
                 {
-                    Console.Write("Vuoi effettuare una prenotazione? (si/no): ");
+                    Console.Write("Vuoi effettuare una prenotazione (si/no) ? ");
                     choice = Console.ReadLine().ToLower();
 
                 } while (choice != "si" && choice != "no");
@@ -58,8 +61,42 @@ namespace GestoreEventi
                     firstShow.PrintReservedAndAvailableSeats();
                 }
 
+
+                // blocco di codice dove domando all'utente se vuole disdire dei posti -----------------------
+                string choiceCancellation;
+
+                do
+                {
+                    Console.Write("Vuoi disdire dei posti (si/no) ? ");
+                    choiceCancellation = Console.ReadLine().ToLower();
+
+                    if (choiceCancellation == "si")
+                    {
+                        Console.Write("Indica il numero di posti da disdire: ");
+
+                        int placesToCancel;
+
+                        if(int.TryParse(Console.ReadLine(), out placesToCancel))
+                        {
+                            firstShow.CancelSeats(placesToCancel);
+
+                            firstShow.PrintReservedAndAvailableSeats();
+
+                        } else
+                        {
+                            Console.WriteLine("Input non valido. Inserisci un numero di posti da disdire valido");
+                        }
+                    }
+
+                } while (choiceCancellation != "no");
+
+
+            }catch(ArgumentException ex)
+            {
+                Console.WriteLine("Si è verificato un errore");
+                Console.WriteLine(ex.Message);
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Si è verificato un errore");
                 Console.WriteLine(ex.Message);
