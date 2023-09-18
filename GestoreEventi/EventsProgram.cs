@@ -26,5 +26,13 @@ namespace GestoreEventi
         {
             Events.Add(ev);
         }
+
+        // metodo che restituisce una lista di eventi con tutti gli eventi presenti in una certa data
+        public List<Event> SearchEventsByDate(DateTime date)
+        {
+            List<Event> eventsByDate = Events.Where(e => e.Date == date).ToList();
+
+            return eventsByDate;
+        }
     }
 }
