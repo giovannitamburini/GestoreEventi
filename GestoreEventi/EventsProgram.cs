@@ -10,5 +10,11 @@ namespace GestoreEventi
     {
         string Title { get; set; }
         List<Event> Events { get; set; }
+
+        public EventsProgram(string programTitle)
+        {
+            this.Title = programTitle;
+            this.Events = new List<Event>(); 
+        }
     }
 }
