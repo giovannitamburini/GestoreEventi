@@ -17,14 +17,19 @@ namespace GestoreEventi
             this.Price = price;
         }
 
-        public string DateFormatter(DateTime date)
+        public string DateFormatter()
         {
-            return date.ToString("dd/MM/yyyy HH:mm:ss");
+            return this.Date.ToString("dd/MM/yyyy HH:mm:ss");
         }
 
-        public string PriceFormatter(double price)
+        public string PriceFormatter()
         {
-            return price.ToString("0.00");
+            return this.Price.ToString("0.00");
+        }
+
+        public override string ToString()
+        {
+            return $"{this.Date} - {this.Title} - {this.Speaker} - {PriceFormatter()}";
         }
     }
 }
