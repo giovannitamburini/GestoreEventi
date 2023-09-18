@@ -64,6 +64,19 @@ namespace GestoreEventi
         {
             Events.Clear();
         }
+
+        // un metodo che restituisce una stringa che mostra il titolo del programma e tutti gli eventi aggiunti alla lista
+        public string PrintTitleProgramAndRelativeEvents()
+        {
+            string rappresentationProgram = $"{this.Title}:\n";
+
+            foreach(Event singleEvent in Events)
+            {
+                rappresentationProgram += $"\t{singleEvent.Date} - {singleEvent.Title}\n";
+            }
+
+            return rappresentationProgram;
+        }
     }
 
 
