@@ -108,7 +108,28 @@ namespace GestoreEventi
             {
                 Console.WriteLine("Si è verificato un errore");
                 Console.WriteLine(ex.Message);
-            } 
+            }
+
+            // MILESTONE 4 -----------------------
+
+            // chiedo all'utente il titolo del EventsProgram
+
+            string programTitle;
+
+            do
+            {
+                Console.Write("Inseirsci il titolo del tuo programma eventi: ");
+                programTitle = Console.ReadLine();
+
+                if (programTitle == null)
+                {
+                    Console.WriteLine("Hai inserito un valore nulla, devi inserire un nome valido");
+                }
+            } while (programTitle == null);
+
+
+            // creo una nuova istanza di EventsProgram utilizando il titolo inserito dall'utente
+            EventsProgram firstProgram = new EventsProgram(programTitle);
         }
     }
 }
