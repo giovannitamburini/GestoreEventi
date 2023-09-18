@@ -58,6 +58,12 @@ namespace GestoreEventi
         {
             return Events.Count;
         }
+
+        // metodo che svuota la lista eventi
+        public void EmptyList()
+        {
+            Events.Clear();
+        }
     }
 
 
