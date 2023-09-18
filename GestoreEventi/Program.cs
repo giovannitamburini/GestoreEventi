@@ -125,11 +125,87 @@ namespace GestoreEventi
                 {
                     Console.WriteLine("Hai inserito un valore nulla, devi inserire un nome valido");
                 }
+
             } while (programTitle == null);
 
 
             // creo una nuova istanza di EventsProgram utilizando il titolo inserito dall'utente
             EventsProgram firstProgram = new EventsProgram(programTitle);
+
+            // inizializzo una variabile int
+            int numberOfEventsToAdd;
+
+            // ciclo fin quando l'utente non inserisce un numero positivo
+            do
+            {
+                Console.WriteLine("Indica il numero di eventi da inserire: ");
+
+                string userInput = Console.ReadLine();
+
+                if (int.TryParse(userInput, out numberOfEventsToAdd))
+                {
+                    if (numberOfEventsToAdd <= 0)
+                    {
+                        Console.WriteLine("Il numero inserito deve essere positivo");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Il tuo inserimento risulta errato, devi inserire un numero positivo.");
+                }
+
+            } while (numberOfEventsToAdd <= 0);
+
+            for (int i = 0; i < numberOfEventsToAdd; i++)
+            {
+                //Console.Write($"Inserisci il titolo del {i + 1}° evento: ");
+                //string eventTitle = Console.ReadLine() ?? string.Empty;
+                //Console.Write($"Inserisci la data del {i + 1}° evento: ");
+                //DateTime eventDate = DateTime.Parse(Console.ReadLine());
+                //Console.Write($"Inserisci il numero di posti totali del {i + 1}° evento: ");
+                //int eventMaxSeats = int.Parse(Console.ReadLine());
+
+                bool validDate = false;
+
+                // ciclo fino a quando non si inseriscono i dati validi
+                while (!validDate)
+                {
+                    Console.Write($"Inserisci il titolo del {i + 1}° evento: ");
+                    string eventTitle = Console.ReadLine();
+
+                    if (string.IsNullOrWhiteSpace(eventTitle))
+                    {
+                        Console.WriteLine("Il titolo non può essere vuoto. Riprova.");
+                        continue;
+                    }
+
+                    Console.Write($"Inserisci la data del {i + 1}° evento (formato dd/MM/yyyy): ");
+                    string dateInput = Console.ReadLine();
+                    if (!DateTime.TryParseExact(dateInput, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime eventDate))
+                    {
+                        Console.WriteLine("Formato data non valido. Utilizza il formato dd/MM/yyyy. Riprova.");
+                        continue;
+                    }
+
+                    Console.Write($"Inserisci il numero di posti totali del {i + 1}° evento: ");
+                    string seatsInput = Console.ReadLine();
+
+                    if (!int.TryParse(seatsInput, out int eventMaxSeats) || eventMaxSeats <= 0)
+                    {
+                        Console.WriteLine("Il numero di posti deve essere un valore intero positivo. Riprova.");
+                        continue;
+                    }
+
+                    // creo un nuovo evento
+                    Event newEvent = new Event(eventTitle, eventDate, eventMaxSeats);
+
+                    // aggiungo il nuovo evento alla lista degli eventi
+                    firstProgram.AddEventToProgramList(newEvent);
+
+                    validDate = true;
+                }
+
+            }
         }
     }
 }
