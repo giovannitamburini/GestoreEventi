@@ -89,5 +89,20 @@ namespace GestoreEventi
 
             return reservedSeats += placesToReserve;
         }
+
+        public int CancelSeats(int placesToCancel)
+        {
+            if (date < DateTime.Now)
+            {
+                throw new Exception("Evento non disponibile, evento già passato");
+            }
+
+            if (placesToCancel > reservedSeats)
+            {
+                throw new Exception("Il numero dei posti da disdire è superiore ai posti prenotati");
+            }
+
+            return reservedSeats -= placesToCancel;
+        }
     }
 }
