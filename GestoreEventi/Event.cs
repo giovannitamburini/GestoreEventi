@@ -9,7 +9,7 @@ namespace GestoreEventi
 {
     public class Event
     {
-        public string title;
+        public string title = "nome non disponibile";
         public DateTime date;
         public int maxCapacity;
         public int reservedSeats;
@@ -33,7 +33,7 @@ namespace GestoreEventi
             get { return date; }
             set
             {
-                if (date < DateTime.Now)
+                if (value < DateTime.Now)
                 {
                     throw new ArgumentException("La data inserita è errata, non può essere passata");
                 }
@@ -47,7 +47,7 @@ namespace GestoreEventi
             get { return maxCapacity; }
             set
             {
-                if (maxCapacity <= 0)
+                if (value <= 0)
                 {
                     throw new ArgumentOutOfRangeException(nameof(maxCapacity), "La capienza massima dell'evento deve essere un numero positivo");
                 }
@@ -109,6 +109,12 @@ namespace GestoreEventi
         {
             string formattedDate = this.Date.ToString("dd/MM/yyyy");
             return formattedDate + this.Title;
+        }
+
+        public void PrintReservedAndAvailableSeats()
+        {
+            Console.WriteLine("Numero di posti prenotati = " + reservedSeats);
+            Console.WriteLine("Numero di posti disponibili = " + (this.MaxCapacity - this.reservedSeats));
         }
     }
 }
