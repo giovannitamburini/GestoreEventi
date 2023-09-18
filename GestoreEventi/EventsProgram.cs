@@ -52,5 +52,13 @@ namespace GestoreEventi
 
             return sb.ToString();
         }
+
+        // un metodo che restituisce quanti eventi sono presenti nel programma eventi attualmente.
+        public int CountEventsInTheList()
+        {
+            return Events.Count;
+        }
     }
+
+
 }
