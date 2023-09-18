@@ -34,5 +34,23 @@ namespace GestoreEventi
 
             return eventsByDate;
         }
+
+        // un metodo statico che si occupa, presa una lista di eventi, di stamparla in Console, o ancora meglio vi restituisca la rappresentazione in stringa della vostra lista di eventi.
+        public static string PrintEventsList(List<Event> events)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            Console.WriteLine("Lita eventi in stringa:");
+
+            foreach (Event singleEvent in events)
+            {
+                sb.Append($"- Titolo evento: {singleEvent.Title}, ");
+                sb.Append($"Data evento: {singleEvent.Date}, ");
+                sb.Append($"Capacità massima evento: {singleEvent.MaxCapacity}");
+                sb.AppendLine();
+            }
+
+            return sb.ToString();
+        }
     }
 }
