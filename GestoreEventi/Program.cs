@@ -206,6 +206,49 @@ namespace GestoreEventi
                 }
 
             }
+
+            // 1. Stampate il numero di eventi presenti nel vostro programma eventi
+            firstProgram.CountEventsInTheList();
+
+            // 2. Stampate la lista di eventi inseriti nel vostro programma usando il metodo già fatto
+            firstProgram.PrintTitleProgramAndRelativeEvents();
+
+            // 3. Chiedere all’utente una data e stampate tutti gli eventi in quella data. Usate il metodo che vi restituisce una lista di eventi in una data dichiarata e create un metodo statico che si occupa di stampare una lista di eventi che gli arriva. Passate dunque la lista di eventi in data al metodo statico, per poterla stampare
+            //Console.Write("Inserisci una data per sapere che eventi ci saranno (gg/mm/yyyy): ");
+            //DateTime selectedeDate = DateTime.Parse(Console.ReadLine());
+
+            // inizializzo una variabile datetime che mi servirà per fare la ricerca
+            DateTime selectedDate;
+
+            // controllo che il formato inserito sia corretto
+            do
+            {
+                Console.Write("Inserisci una data per sapere che eventi ci saranno (gg/mm/yyyy): ");
+                string dateInput = Console.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(dateInput))
+                {
+                    Console.WriteLine("La data non può essere vuota. Riprova.");
+                    continue;
+                }
+
+                if (!DateTime.TryParseExact(dateInput, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out selectedDate))
+                {
+                    Console.WriteLine("Il formato della data non è valido. Utilizza il formato gg/mm/yyyy");
+                    continue;
+                }
+
+                break;
+
+            } while (true);
+
+            firstProgram.SearchEventsByDate(selectedDate);
+
+            // 4. Eliminate tutti gli eventi dal vostro programma
+            firstProgram.EmptyList();
+
         }
+
+
     }
 }
