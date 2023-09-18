@@ -104,5 +104,11 @@ namespace GestoreEventi
 
             return reservedSeats -= placesToCancel;
         }
+
+        public override string ToString()
+        {
+            string formattedDate = this.Date.ToString("dd/MM/yyyy");
+            return formattedDate + this.Title;
+        }
     }
 }
