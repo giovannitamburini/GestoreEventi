@@ -54,11 +54,17 @@ namespace GestoreEventi
                 {
                     Console.Write("Quanti posti desideri prenotare? ");
 
-                    int placesToReserve = int.Parse(Console.ReadLine());
+                    int placesToReserve;
 
-                    firstShow.ReserveSeats(placesToReserve);
+                    if(int.TryParse(Console.ReadLine(), out placesToReserve))
+                    {
+                        firstShow.ReserveSeats(placesToReserve);
 
-                    firstShow.PrintReservedAndAvailableSeats();
+                        firstShow.PrintReservedAndAvailableSeats();
+                    } else
+                    {
+                        Console.WriteLine("Input inserito non valido");
+                    }
                 }
 
 
@@ -82,6 +88,8 @@ namespace GestoreEventi
 
                             firstShow.PrintReservedAndAvailableSeats();
 
+                            Console.WriteLine();
+
                         } else
                         {
                             Console.WriteLine("Input non valido. Inserisci un numero di posti da disdire valido");
@@ -100,7 +108,6 @@ namespace GestoreEventi
             {
                 Console.WriteLine("Si è verificato un errore");
                 Console.WriteLine(ex.Message);
-
             } 
         }
     }
